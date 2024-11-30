@@ -69,7 +69,7 @@ const getHistory = async (req, res) => {
     });
   } catch (error) {
     console.error("Error fetching histories:", error);
-    res.status(500).json({
+    res.status(400).json({
       status: "fail",
       message: "Gagal mengambil riwayat prediksi",
       error: error.message,
