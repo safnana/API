@@ -3,7 +3,8 @@ const bodyParser = require("body-parser");
 const predictRoutes = require("./src/routes/predictRoute");
 
 const app = express();
-
+const cors = require("cors");
+app.use(cors());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
