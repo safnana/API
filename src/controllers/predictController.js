@@ -37,7 +37,7 @@ const predict = async (req, res) => {
 
     res.status(201).json({
       status: "success",
-      message: "Prediction was successfully stored",
+      message: "Model is predicted successfully",
       data: {
         id: predictionId,
         result,
