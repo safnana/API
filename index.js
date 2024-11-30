@@ -8,8 +8,11 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/predict", predictRoutes);
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
 
-const port = 8080;
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server running on port ${port}`);
 });
