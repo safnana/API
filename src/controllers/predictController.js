@@ -10,7 +10,6 @@ const db = admin.firestore();
 const predict = async (req, res) => {
   try {
     const model = await loadModel();
-
     if (!req.file) {
       return res.status(400).json({
         status: "fail",
@@ -25,6 +24,7 @@ const predict = async (req, res) => {
       result === "Cancer"
         ? "Segera periksa ke dokter!"
         : "Penyakit kanker tidak terdeteksi.";
+    
     const predictionId = uuid.v4();
     const createdAt = new Date().toISOString();
 
@@ -35,9 +35,9 @@ const predict = async (req, res) => {
       createdAt,
     });
 
-    res.json({
+    res.status(201).json({
       status: "success",
-      message: "Model is predicted successfully",
+      message: "Prediction was successfully stored",
       data: {
         id: predictionId,
         result,
@@ -47,9 +47,10 @@ const predict = async (req, res) => {
     });
   } catch (error) {
     console.error("Prediction error:", error);
-    res.status(500).json({
+    res.status(400).json({
       status: "fail",
       message: "Terjadi kesalahan dalam melakukan prediksi",
+      error: error.message,
     });
   }
 };
@@ -71,6 +72,7 @@ const getHistory = async (req, res) => {
     res.status(500).json({
       status: "fail",
       message: "Gagal mengambil riwayat prediksi",
+      error: error.message,
     });
   }
 };
