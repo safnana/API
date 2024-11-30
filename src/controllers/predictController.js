@@ -2,9 +2,8 @@ const { loadModel, processImage } = require("../models/predictModel");
 const admin = require("firebase-admin");
 const uuid = require("uuid");
 
-const serviceAccount = require("../../serviceAccountKey.json");
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+  credential: admin.credential.applicationDefault(),  // Menggunakan ADC
 });
 const db = admin.firestore();
 
