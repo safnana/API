@@ -3,7 +3,7 @@ const admin = require("firebase-admin");
 const uuid = require("uuid");
 
 admin.initializeApp({
-  credential: admin.credential.applicationDefault(),  // Menggunakan ADC
+  credential: admin.credential.applicationDefault(),  
 });
 const db = admin.firestore();
 
