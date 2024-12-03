@@ -1,6 +1,4 @@
 const tf = require("@tensorflow/tfjs-node");
-const bucketName = "mlgcbucket";
-const modelFileName = "model.json";
 const modelURL = `https://storage.googleapis.com/mlgcbucket/submissions-model/model.json`;
 
 let model;
@@ -8,12 +6,12 @@ let model;
 const loadModel = async () => {
   if (!model) {
     try {
-      console.log("Loading model from public URL...");
+      console.log("Loading model");
       model = await tf.loadGraphModel(modelURL);
-      console.log("Model loaded successfully!");
+      console.log("Model loaded success!");
     } catch (error) {
-      console.error("Error loading model:", error);
-      throw new Error("Failed to load model from URL");
+      console.error("Error:", error);
+      throw new Error("Failed to load model");
     }
   }
   return model;
