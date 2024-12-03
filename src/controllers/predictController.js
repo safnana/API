@@ -13,7 +13,7 @@ const predict = async (req, res) => {
     if (!req.file) {
       return res.status(400).json({
         status: "fail",
-        message: "No image file provided",
+        message: "No image file",
       });
     }
 
